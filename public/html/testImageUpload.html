@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Image Upload Form</title>
+   </head>
+   <body>
+      <h1>Image Upload</h1>
+      <p>Please use this control to select your image file...</p>
+      <form action = "http://127.0.0.1:5013/upload_image" 
+            method = "POST" 
+            enctype = "multipart/form-data">
+          <div>
+             <input type="file" name="uploadedImage" />
+          </div>
+         <div>
+            <input type = "submit" value = "image-upload" />
+         </div>
+      </form>
+   </body>
+</html>
