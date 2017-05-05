@@ -10,6 +10,7 @@ var STATIC_CONTENT_LOCATION = __dirname+"/public";
 
 
 var app = express();
+app.set('port', (process.env.PORT || 5000));
 
 app.use( express.static(STATIC_CONTENT_LOCATION) );
 app.use( bodyParser.urlencoded( { extended: false } ) );
@@ -114,7 +115,7 @@ utilities.cleanDir = function( path ) {
     });
 };
 
-var server = app.listen(PORT, function() {
+var server = app.listen(app.get('port'), function() {
     var hostAddress = server.address().address;
     var port        = server.address().port;
     console.log("Express server listening at HOST %s and PORT %s", hostAddress, port );
