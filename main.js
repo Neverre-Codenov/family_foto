@@ -5,7 +5,9 @@ var multer = require('multer');
 
 
 var PORT = 5013;
-var STATIC_CONTENT_LOCATION = "/Users/nicknagel/projects/ff_node_server/public";
+//var STATIC_CONTENT_LOCATION = "/Users/nicknagel/projects/ff_node_server/public";
+var STATIC_CONTENT_LOCATION = __dirname+"/public";
+
 
 var app = express();
 
