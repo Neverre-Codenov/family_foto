@@ -126,12 +126,16 @@ app.get( '/aws-s3-signed-request', (request, response) => {
     const s3Params = {
     	Bucket: FF_IMAGE_BUCKET,
     	Key: fileName,
-    	Expires: 600,
+    	Expires: 60,
     	ContentType: fileType,
     	ACL: 'public-read'
     };
     // create an aws s3 object
     const s3 = new aws.S3();
+
+    console.log( "get SIGNED" );
+    console.log( s3 );
+
     // call for signiture
     s3.getSignedUrl( 'putObject', s3Params, (err, data) => {
         if(err){
