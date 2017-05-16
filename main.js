@@ -120,6 +120,12 @@ app.get("/list_page", function(request, response) {
 
 const FF_IMAGE_BUCKET = process.env.S3_BUCKET;
 
+console.log( "PRECONDTIONS" );
+console.log( process.env.AWS_ACCESS_KEY_ID );
+console.log( process.env.AWS_SECRET_ACCESS_KEY );
+console.log( process.env.S3_BUCKET );
+
+
 app.get( '/aws-s3-signed-request', (request, response) => {
     const fileName = request.query['file-name'];
     const fileType = request.query['file-type'];
