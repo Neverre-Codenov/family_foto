@@ -1,0 +1,53 @@
+body {
+	background-color: LightGrey;
+	color: DarkSlateGrey;
+	font: 18pt sans-serif;
+	margin-left: 5vw;
+	margin-right: 5vw;
+}
+
+input[type='submit'] {
+	background-color: AliceBlue;
+	font-size: 14pt;
+	border-radius: 10px;
+	border: solid DarkGrey 1px;
+	margin-top: 2em;
+}
+
+input[type='file'] {
+/*	font-size: 14pt;
+	border: solid DarkGrey 1px;*/
+	display: none;
+}
+
+label#img-upload-label {
+    
+}
+
+div.file-upload {
+	background-color: WhiteSmoke;
+	border: solid DarkGrey 1px;
+	width: 80vw;
+	padding: 0.5em;
+}
+
+div#nav-bar {
+    background-color: WhiteSmoke;
+	border: solid DarkGrey 1px;
+	margin-left:  -2.5vw;
+	margin-right: -2.5vw;
+}
+
+div#nav-bar span {
+	display: inline-block;
+	background-color: #112;
+	padding: 1em;
+}
+
+div#nav-bar span a {
+	color: white;
+	text-decoration: none;
+}
+
+
+

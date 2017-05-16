@@ -2,18 +2,32 @@
 <html>
    <head>
       <title>Image Upload Form</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="../css/image-upload.css" 
+            type="text/css"
+            rel="stylesheet">
    </head>
    <body>
+      <div id='nav-bar'>
+        <span>
+          <a href='https://family-foto.herokuapp.com/list_page'>Gallery</a>
+        </span>
+      </div>
       <h1>Image Upload</h1>
       <p>Please use this control to select your image file...</p>
       <form action = "https://family-foto.herokuapp.com/upload_image" 
             method = "POST" 
             enctype = "multipart/form-data">
-          <div>
-             <input id= "img-upload-cntrl" type="file" name="uploadedImage" />
+          <div class="file-upload">
+            <input id= "img-upload-cntrl" 
+                   type="file" 
+                   name="uploadedImage" />
+            <label id='img-upload-label' 
+                   for='img-upload-cntrl'>Select Image...</label>
           </div>
          <div>
-            <input type = "submit" value = "image-upload" />
+            <input type = "submit" 
+                   value = "Upload" />
          </div>
          <div>
             <img id='uploaded_view' width="100px" />

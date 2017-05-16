@@ -90,10 +90,19 @@ app.get("/list_page", function(request, response) {
 	responsestr += `<!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>Galery View</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/image-upload.css" 
+          type="text/css"
+          rel="stylesheet">
   </head>
   <body>
-    <h1>TEST</h1>`;
+    <div id='nav-bar'>
+      <span>
+        <a href='https://family-foto.herokuapp.com/image_upload'>Upload Image</a>
+      </span>
+    </div>
+    <h1>IMAGES</h1>`;
 
     filenames.forEach( function( filename ) {
 	    responsestr += `
