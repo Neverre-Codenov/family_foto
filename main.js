@@ -126,7 +126,7 @@ app.get( '/aws-s3-signed-request', (request, response) => {
     const s3Params = {
     	Bucket: FF_IMAGE_BUCKET,
     	Key: fileName,
-    	Expires: 60,
+    	Expires: 600,
     	ContentType: fileType,
     	ACL: 'public-read'
     };
