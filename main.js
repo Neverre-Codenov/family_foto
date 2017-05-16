@@ -2,6 +2,7 @@ var express = require('express');
 var fs      = require('fs');
 var bodyParser = require('body-parser');
 var multer = require('multer');
+var aws = require('aws-sdk');
 
 
 var PORT = 5013;
@@ -107,6 +108,38 @@ app.get("/list_page", function(request, response) {
     response.send(responsestr);
 
 } );
+
+const FF_IMAGE_BUCKET = process.env.S3_BUCKET;
+
+app.get( '/aws-s3-signed-request', (request, response) => {
+    const fileName = request.query['file-name'];
+    const fileType = request.query['file-type'];
+    const s3Params = {
+    	Bucket: FF_IMAGE_BUCKET,
+    	Key: fileName,
+    	Expires: 600,
+    	ContentType: fileType,
+    	ACL: 'public-read'
+    };
+    // create an aws s3 object
+    const s3 = new aws.S3();
+    // call for signiture
+    s3.getSignedUrl( 'putObject', s3Params, (err, data) => {
+        if(err){
+        	// TODO: ERROR HANDLING BACK PROPAGATE IT
+        	console.log(err);
+        	return response.end();
+        } else {
+        	const responseData = {
+        		signedUrl: data,
+        		url: `https://${FF_IMAGE_BUCKET}.s3.amazonaws.com/${fileName}`
+        	}
+        	response.write( JSON.stringify(responseData) );
+	        response.end();
+        }
+    } );
+});
+
 
 var utilities = {};
 utilities.cleanDir = function( path ) {

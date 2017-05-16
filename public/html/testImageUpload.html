@@ -10,11 +10,17 @@
             method = "POST" 
             enctype = "multipart/form-data">
           <div>
-             <input type="file" name="uploadedImage" />
+             <input id= "img-upload-cntrl" type="file" name="uploadedImage" />
           </div>
          <div>
             <input type = "submit" value = "image-upload" />
          </div>
+         <div>
+            <img id='uploaded_view' width="100px" />
+            <p id="url-display">TBD</p>
+         </div>
       </form>
+      <script type='application/ecmascript'
+              src = '../javascript/image-upload-client.js'></script>
    </body>
 </html>

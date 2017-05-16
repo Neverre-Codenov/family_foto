@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Neverre-Codenov/family_foto#readme",
   "dependencies": {
+    "aws-sdk": "^2.49.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "multer": "^1.3.0"
