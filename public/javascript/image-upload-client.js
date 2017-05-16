@@ -47,6 +47,9 @@ function getSignedRequest ( file ) {
 }
 
 function doAwsDirectUpload(file, signedUrl, url) {
+
+    console.log( signedUrl );
+
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedUrl);
     xhr.onreadystatechange = () => {

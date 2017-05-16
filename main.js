@@ -132,10 +132,6 @@ app.get( '/aws-s3-signed-request', (request, response) => {
     };
     // create an aws s3 object
     const s3 = new aws.S3();
-
-    console.log( "get SIGNED" );
-    console.log( s3 );
-
     // call for signiture
     s3.getSignedUrl( 'putObject', s3Params, (err, data) => {
         if(err){
