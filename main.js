@@ -11,14 +11,14 @@ var STATIC_CONTENT_LOCATION = __dirname+"/public";
 
 
 var app = express();
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || PORT));
 
 app.use( express.static(STATIC_CONTENT_LOCATION) );
 app.use( bodyParser.urlencoded( { extended: false } ) );
 app.use( multer( {dest: STATIC_CONTENT_LOCATION + '/temp/'} ).single('uploadedImage'));
 
 app.get('/', function (request, response) {
-    response.send("Testing 1, 2, 3...");
+    response.sendFile( STATIC_CONTENT_LOCATION+"/html/image-upload.html" );
 });
 
 app.get('/listing', function (request, response) {
@@ -42,7 +42,7 @@ app.get('/listing', function (request, response) {
 });
 
 app.get('/image_upload', function (request, response) {
-    response.sendFile( STATIC_CONTENT_LOCATION+"/html/testImageUpload.html" );
+    response.sendFile( STATIC_CONTENT_LOCATION+"/html/image-upload.html" );
 });
 
 app.post('/upload_image', function (request, response) {
