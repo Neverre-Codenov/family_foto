@@ -6,7 +6,7 @@ body {
 	margin-right: 5vw;
 }
 
-input[type='submit'] {
+input[type='button'] {
 	background-color: AliceBlue;
 	font-size: 14pt;
 	border-radius: 10px;
@@ -14,9 +14,11 @@ input[type='submit'] {
 	margin-top: 2em;
 }
 
+/*
+  PIA:  Who came up with the file input implementation?!
+  SEE FOR HELP: https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications
+*/
 input[type='file'] {
-/*	font-size: 14pt;
-	border: solid DarkGrey 1px;*/
 	display: none;
 }
 

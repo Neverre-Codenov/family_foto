@@ -1,12 +1,29 @@
 (()=>{
 	document.getElementById("img-upload-cntrl").onchange = ( evt ) => {
-        const file = evt.currentTarget.files[0];
+        file = evt.currentTarget.files[0];
         if( file !== undefined && file !== null ) {
-            getSignedRequest( file );
+            document.getElementById('img-upload-label').innerHTML = "Selected file: " + file.name
         } else {
-        	alert( "A file has not been selected." );
+            alert( "A file has not been selected." );
         }
 	};
+})();
+
+// TODO: REFACTOR !!! TURN ALL THIS MESS INTO BONA FIDE OBJECT
+var file = null;
+
+(()=>{
+    document.getElementById("upload-button").onclick = ( evt ) => {
+        if( file === null ) {
+            alert( "A file has not been selected." );
+        } else {
+            if ( (file.type === "image/jpeg") || (file.type === "image/png") ) {
+                getSignedRequest( file );
+            } else {
+                alert( "Selected file is not an image." );
+            }
+        }
+    };
 })();
 
 function getSignedRequest ( file ) {
