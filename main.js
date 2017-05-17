@@ -83,11 +83,17 @@ app.post('/upload_image', function (request, response) {
 
 // TODO: RESUME HERE. TEMPLATE THIS OUT!
 app.get("/list_page", function(request, response) {
-
-    var filenames = fs.readdirSync(STATIC_CONTENT_LOCATION + "/images");
-
+	const params = {
+	  Bucket: FF_IMAGE_BUCKET
+	};
+	const s3 = new aws.S3();
 	var responsestr = "";
-	responsestr += `<!DOCTYPE html>
+	s3.listObjects(params, function(err, data) {
+	  if (err) {
+        responsestr += '<p>An error has occured.</p>';
+	  	console.log(err, err.stack); 
+	  } else {
+	      responsestr += `<!DOCTYPE html>
 <html>
   <head>
     <title>Galery View</title>
@@ -103,28 +109,30 @@ app.get("/list_page", function(request, response) {
       </span>
     </div>
     <h1>IMAGES</h1>`;
-
-    filenames.forEach( function( filename ) {
-	    responsestr += `
-	        <div>
-	            <img src="/images/` + filename + `" width="100px">
-	        </div>
-	    `;
-    });
-
-  responsestr += `</body>
+/////////////////////////////////////////////
+	  	    data.Contents.forEach( (o)=> {
+                responsestr += `
+<div>
+    <img src="https://s3.amazonaws.com/family-foto-app/` + o.Key + `" width="100px">
+</div>
+`;
+	  	    } );
+/////////////////////////////////////////////
+  responsestr += `
+  </body>
 </html>`;
-    response.send(responsestr);
+        response.send(responsestr);
+	  }
+	});
 
 } );
 
 const FF_IMAGE_BUCKET = process.env.S3_BUCKET;
 
-console.log( "PRECONDTIONS" );
-console.log( process.env.AWS_ACCESS_KEY_ID );
-console.log( process.env.AWS_SECRET_ACCESS_KEY );
-console.log( process.env.S3_BUCKET );
-
+// console.log( "PRECONDTIONS" );
+// console.log( process.env.AWS_ACCESS_KEY_ID );
+// console.log( process.env.AWS_SECRET_ACCESS_KEY );
+// console.log( process.env.S3_BUCKET );
 
 app.get( '/aws-s3-signed-request', (request, response) => {
     const fileName = request.query['file-name'];
