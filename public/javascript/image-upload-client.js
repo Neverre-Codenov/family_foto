@@ -34,10 +34,8 @@ function getSignedRequest ( file ) {
     xhr.onreadystatechange = () => {
         if(xhr.readyState === 4){
             if(xhr.status === 200){
-                // TODO: RESUME HERE. PARSE RESPONSE AND CONTINUE...
                 const response = JSON.parse(xhr.responseText);
                 doAwsDirectUpload(file, response.signedUrl, response.url );
-                //console.log( response );
             }else{
                 alert( 'Sorry. Unable to store file.' );
             }
@@ -47,9 +45,6 @@ function getSignedRequest ( file ) {
 }
 
 function doAwsDirectUpload(file, signedUrl, url) {
-
-    console.log( signedUrl );
-
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedUrl);
     xhr.onreadystatechange = () => {
