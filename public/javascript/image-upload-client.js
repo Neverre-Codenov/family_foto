@@ -79,6 +79,9 @@ function doAwsDirectUpload(file, signedUrl, url) {
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedUrl);
     xhr.onreadystatechange = () => {
+
+document.getElementById( "test-out" ).innerHTML='READY STATE: ' + xhr.readyState ;
+
         if(xhr.readyState === 4){
             if(xhr.status === 200){
 
