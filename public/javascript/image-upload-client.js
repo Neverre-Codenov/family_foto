@@ -1,3 +1,13 @@
+function testEvent( evt ) {
+
+document.getElementById( "test-out" ).innerHTML='TEST 3: event detected on test-button: ' + evt.currentTarget.id;
+
+}
+
+
+document.getElementById("test-button").addEventListener( 'click', function(evt) {testEvent(evt);}, false );
+
+
 // (()=>{
 // 	document.getElementById("img-upload-cntrl").onchange = ( evt ) => {
 // 	};
