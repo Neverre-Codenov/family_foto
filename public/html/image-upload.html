@@ -18,7 +18,21 @@
       <form action = "https://family-foto.herokuapp.com/upload_image" 
             method = "POST" 
             enctype = "multipart/form-data">
+
           <div class="file-upload">
+            <input id= "img-upload-cntrl" 
+                   type="file" 
+                   name="uploadedImage"
+                   accept="image/*"
+                    />
+
+<!--             <label id='img-upload-label' 
+                   for='img-upload-cntrl'>Select Image...</label> -->
+                   
+          </div>
+
+
+<!--           <div class="file-upload">
             <input id= "img-upload-cntrl" 
                    type="file" 
                    name="uploadedImage"
@@ -26,7 +40,10 @@
                     />
             <label id='img-upload-label' 
                    for='img-upload-cntrl'>Select Image...</label>
-          </div>
+          </div> -->
+
+
+
          <div>
             <input type = "button" 
                    value = "Upload" 

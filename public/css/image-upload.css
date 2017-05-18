@@ -19,7 +19,7 @@ input[type='button'] {
   SEE FOR HELP: https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications
 */
 input[type='file'] {
-	display: none;
+	/*display: none;*/
 }
 
 label#img-upload-label {

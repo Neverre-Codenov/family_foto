@@ -2,7 +2,8 @@
 	document.getElementById("img-upload-cntrl").onchange = ( evt ) => {
         file = evt.currentTarget.files[0];
         if( file !== undefined && file !== null ) {
-            document.getElementById('img-upload-label').innerHTML = "Selected file: " + file.name
+            // document.getElementById('img-upload-label').innerHTML = "Selected file: " + file.name
+            alert( "Selected file is: " + file.name );
         } else {
             alert( "A file has not been selected." );
         }
