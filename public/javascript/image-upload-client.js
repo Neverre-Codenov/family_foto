@@ -1,26 +1,26 @@
-(()=>{
-	document.getElementById("img-upload-cntrl").onchange = ( evt ) => {
+// (()=>{
+// 	document.getElementById("img-upload-cntrl").onchange = ( evt ) => {
+// 	};
+// })();
 
-        var test = (evt.currentTarget.files !== undefined) && (evt.currentTarget.files !== null);
+function handleFileSelect( evt ) {
 
-document.getElementById( "test-out" ).innerHTML='event detected on file-input: ' + test;
+    var test = (evt.currentTarget.files !== undefined) && (evt.currentTarget.files !== null);
 
-        file = evt.currentTarget.files[0];
-        if( file !== undefined && file !== null ) {
-            // document.getElementById('img-upload-label').innerHTML = "Selected file: " + file.name
-            // alert( "Selected file is: " + file.name );
+document.getElementById( "test-out" ).innerHTML='TEST 2: event detected on file-input: ' + test;
 
-            // document.getElementById( "test-out" ).innerHTML='event detected on file-input';
+    file = evt.currentTarget.files[0];
+    if( file !== undefined && file !== null ) {
+        // document.getElementById('img-upload-label').innerHTML = "Selected file: " + file.name
+        // alert( "Selected file is: " + file.name );
+        // document.getElementById( "test-out" ).innerHTML='event detected on file-input';
 
-        } else {
-            alert( "A file has not been selected." );
-        }
-	};
-})();
+    } else {
+        alert( "A file has not been selected." );
+    }
+}
 
-// function handleFileSelect( evt ) {
-
-// }
+document.getElementById("img-upload-cntrl").addEventListener( 'change', function(evt) {handleFileSelect(evt);}, false );
 
 // TODO: REFACTOR !!! TURN ALL THIS MESS INTO BONA FIDE OBJECT
 var file = null;
