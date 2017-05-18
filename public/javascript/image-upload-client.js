@@ -1,11 +1,11 @@
 function testEvent( evt ) {
 
-document.getElementById( "test-out" ).innerHTML='TEST 3: event detected on test-button: ' + evt.currentTarget.id;
+document.getElementById( "test-out" ).innerHTML='TEST 4: touchend event detected on test-button: ' + evt.currentTarget.id;
 
 }
 
 
-document.getElementById("test-button").addEventListener( 'click', function(evt) {testEvent(evt);}, false );
+document.getElementById("test-button").addEventListener( 'touchend', function(evt) {testEvent(evt);}, false );
 
 
 // (()=>{
