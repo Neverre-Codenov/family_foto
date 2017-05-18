@@ -1,11 +1,16 @@
-function testEvent( evt ) {
-
-document.getElementById( "test-out" ).innerHTML='TEST 4: touchend event detected on test-button: ' + evt.currentTarget.id;
-
-}
+// TODO: REFACTOR !!! TURN ALL THIS MESS INTO BONA FIDE OBJECT
 
 
-document.getElementById("test-button").addEventListener( 'touchend', function(evt) {testEvent(evt);}, false );
+// function testEvent( evt ) {
+//     document.getElementById( "test-out" ).innerHTML='TEST 4: touchend event detected on test-button: ' + evt.currentTarget.id;
+// }
+// document.getElementById("test-button").addEventListener( 
+//     'touchend', 
+//     function(evt) {
+//         testEvent(evt);
+//     }, 
+//     false 
+// );
 
 
 // (()=>{
@@ -13,33 +18,27 @@ document.getElementById("test-button").addEventListener( 'touchend', function(ev
 // 	};
 // })();
 
+/**
+ *  Handles the 'change' event fired on file selection. no-op at present but can provide feedback to user
+ *  if label technique is reinstated (see html view code image-upload.html)
+ */
 function handleFileSelect( evt ) {
-
-    var test = (evt.currentTarget.files !== undefined) && (evt.currentTarget.files !== null);
-
-document.getElementById( "test-out" ).innerHTML='TEST 2: event detected on file-input: ' + test;
-
     file = evt.currentTarget.files[0];
     if( file !== undefined && file !== null ) {
         // document.getElementById('img-upload-label').innerHTML = "Selected file: " + file.name
         // alert( "Selected file is: " + file.name );
         // document.getElementById( "test-out" ).innerHTML='event detected on file-input';
-
     } else {
         alert( "A file has not been selected." );
     }
 }
-
 document.getElementById("img-upload-cntrl").addEventListener( 'change', function(evt) {handleFileSelect(evt);}, false );
 
-// TODO: REFACTOR !!! TURN ALL THIS MESS INTO BONA FIDE OBJECT
+
 var file = null;
 
 (()=>{
     document.getElementById("upload-button").onclick = ( evt ) => {
-
-        document.getElementById( "test-out" ).innerHTML='event detected on upload button';
-
         if( file === null ) {
             alert( "A file has not been selected." );
         } else {
@@ -52,6 +51,10 @@ var file = null;
     };
 })();
 
+/**
+ *  Gets a SIGNED REQUEST by calling heroku node server which calls AWS to get 
+ *  signiture thereby enabling DIRECT UPLOAD to AWS...
+ */
 function getSignedRequest ( file ) {
     const routeStr = 
       `/aws-s3-signed-request?file-name=${file.name}&file-type=${file.type}`;
@@ -70,42 +73,25 @@ function getSignedRequest ( file ) {
     xhr.send();
 }
 
-function doAwsDirectUpload(file, signedUrl, url) {
 
+/**
+ *  Given the siggy do the DIRECT UPLOAD...  
+ *  
+ */
+function doAwsDirectUpload(file, signedUrl, url) {
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedUrl, false);
     xhr.onreadystatechange = () => {
-
-document.getElementById( "test-out" ).innerHTML='READY STATE: ' + xhr.readyState ;
-
         if(xhr.readyState === 4){
             if(xhr.status === 200){
-
-document.getElementById( "test-out" ).innerHTML='200!';
-
                 document.getElementById('uploaded_view').src = url;
                 document.getElementById('url-display').innerHTML = url;
             }else{
-
-document.getElementById( "test-out" ).innerHTML='ERROR...';
-
                 alert( 'Sorry. Unable to complete upload.' );
             }
         }
     }
-
-document.getElementById( "test-out" ).innerHTML='PRIOR TO SEND READY STATE: ' + xhr.readyState ;
-
+    // TODO: ERROR AVOIDANCE. WHAT IF XHR HANGS? WHICH IT DID IN FIREFOX...
     xhr.send(file);
-
-
-document.getElementById( "test-out" ).innerHTML='POST SEND READY STATE: ' + xhr.readyState ;
-
-
 }
-
-
-
-
-
 
