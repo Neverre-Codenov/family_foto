@@ -1,17 +1,26 @@
 (()=>{
 	document.getElementById("img-upload-cntrl").onchange = ( evt ) => {
+
+        var test = (evt.currentTarget.files !== undefined) && (evt.currentTarget.files !== null);
+
+document.getElementById( "test-out" ).innerHTML='event detected on file-input: ' + test;
+
         file = evt.currentTarget.files[0];
         if( file !== undefined && file !== null ) {
             // document.getElementById('img-upload-label').innerHTML = "Selected file: " + file.name
             // alert( "Selected file is: " + file.name );
 
-            document.getElementById( "test-out" ).innerHTML='event detected on file-input';
+            // document.getElementById( "test-out" ).innerHTML='event detected on file-input';
 
         } else {
             alert( "A file has not been selected." );
         }
 	};
 })();
+
+// function handleFileSelect( evt ) {
+
+// }
 
 // TODO: REFACTOR !!! TURN ALL THIS MESS INTO BONA FIDE OBJECT
 var file = null;
