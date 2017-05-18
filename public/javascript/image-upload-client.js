@@ -72,10 +72,6 @@ function getSignedRequest ( file ) {
 
 function doAwsDirectUpload(file, signedUrl, url) {
 
-
-    document.getElementById( "test-out" ).innerHTML='siggy obtained and attempting updload...';
-
-
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedUrl);
     xhr.onreadystatechange = () => {
@@ -97,6 +93,9 @@ document.getElementById( "test-out" ).innerHTML='ERROR...';
             }
         }
     }
+
+document.getElementById( "test-out" ).innerHTML='PRIOR TO SEND READY STATE: ' + xhr.readyState ;
+
     xhr.send(file);
 }
 
