@@ -3,7 +3,10 @@
         file = evt.currentTarget.files[0];
         if( file !== undefined && file !== null ) {
             // document.getElementById('img-upload-label').innerHTML = "Selected file: " + file.name
-            alert( "Selected file is: " + file.name );
+            // alert( "Selected file is: " + file.name );
+
+            document.getElementById( "test-out" ).innerHTML='event detected on file-input';
+
         } else {
             alert( "A file has not been selected." );
         }
@@ -15,6 +18,9 @@ var file = null;
 
 (()=>{
     document.getElementById("upload-button").onclick = ( evt ) => {
+
+        document.getElementById( "test-out" ).innerHTML='event detected on upload button';
+
         if( file === null ) {
             alert( "A file has not been selected." );
         } else {
@@ -46,6 +52,11 @@ function getSignedRequest ( file ) {
 }
 
 function doAwsDirectUpload(file, signedUrl, url) {
+
+
+    document.getElementById( "test-out" ).innerHTML='siggy obtained and attempting updload...';
+
+
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedUrl);
     xhr.onreadystatechange = () => {
