@@ -97,6 +97,11 @@ document.getElementById( "test-out" ).innerHTML='ERROR...';
 document.getElementById( "test-out" ).innerHTML='PRIOR TO SEND READY STATE: ' + xhr.readyState ;
 
     xhr.send(file);
+
+
+document.getElementById( "test-out" ).innerHTML='POST SEND READY STATE: ' + xhr.readyState ;
+
+
 }
 
 
