@@ -81,9 +81,15 @@ function doAwsDirectUpload(file, signedUrl, url) {
     xhr.onreadystatechange = () => {
         if(xhr.readyState === 4){
             if(xhr.status === 200){
+
+document.getElementById( "test-out" ).innerHTML='200!';
+
                 document.getElementById('uploaded_view').src = url;
                 document.getElementById('url-display').innerHTML = url;
             }else{
+
+document.getElementById( "test-out" ).innerHTML='ERROR...';
+
                 alert( 'Sorry. Unable to complete upload.' );
             }
         }
