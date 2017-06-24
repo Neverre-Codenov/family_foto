@@ -17,9 +17,60 @@ app.use( express.static(STATIC_CONTENT_LOCATION) );
 app.use( bodyParser.urlencoded( { extended: false } ) );
 app.use( multer( {dest: STATIC_CONTENT_LOCATION + '/temp/'} ).single('uploadedImage'));
 
-app.get('/', function (request, response) {
-    response.sendFile( STATIC_CONTENT_LOCATION+"/html/image-upload.html" );
-});
+app.get("/", function(request, response) {
+
+//  TODO: REFACTOR THIS WITH GALLERY VIEW
+//  TEMP KLUDGE TO REMOVE NAV TO UPLOAD PAGE
+
+    const params = {
+      Bucket: FF_IMAGE_BUCKET
+    };
+    const s3 = new aws.S3();
+    var responsestr = "";
+    s3.listObjects(params, function(err, data) {
+      if (err) {
+        responsestr += '<p>An error has occured.</p>';
+        console.log(err, err.stack); 
+      } else {
+          responsestr += `<!DOCTYPE html>
+<html>
+  <head>
+    <title>Galery View</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/image-upload.css" 
+          type="text/css"
+          rel="stylesheet">
+  </head>
+  <body>
+
+    <h1>IMAGES</h1>`;
+/////////////////////////////////////////////
+            data.Contents.forEach( (o)=> {
+                responsestr += `
+<div class="gallery-container">
+    <div class="open-control">
+        <button type="button"
+                onclick="openImage(event)"
+                data-image-url="https://s3.amazonaws.com/family-foto-app/` + o.Key + `" width="100px"
+                  >Open in new window</button>
+    </div>
+    <img src="https://s3.amazonaws.com/family-foto-app/` + o.Key + `" width="100px">
+</div>
+`;
+            } );
+/////////////////////////////////////////////
+  responsestr += `
+
+      <script type='application/ecmascript'
+              src = '../javascript/gallery.js'></script>
+  </body>
+</html>`;
+        response.send(responsestr);
+      }
+    });
+
+} );
+
 
 app.get('/listing', function (request, response) {
 	// TODO: implement listing route
