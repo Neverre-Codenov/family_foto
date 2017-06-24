@@ -112,13 +112,22 @@ app.get("/list_page", function(request, response) {
 /////////////////////////////////////////////
 	  	    data.Contents.forEach( (o)=> {
                 responsestr += `
-<div>
+<div class="gallery-container">
+    <div class="open-control">
+        <button type="button"
+                onclick="openImage(event)"
+                data-image-url="https://s3.amazonaws.com/family-foto-app/` + o.Key + `" width="100px"
+                  >Open in new window</button>
+    </div>
     <img src="https://s3.amazonaws.com/family-foto-app/` + o.Key + `" width="100px">
 </div>
 `;
 	  	    } );
 /////////////////////////////////////////////
   responsestr += `
+
+      <script type='application/ecmascript'
+              src = '../javascript/gallery.js'></script>
   </body>
 </html>`;
         response.send(responsestr);

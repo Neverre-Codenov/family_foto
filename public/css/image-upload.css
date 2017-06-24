@@ -51,5 +51,20 @@ div#nav-bar span a {
 	text-decoration: none;
 }
 
+div.gallery-container {
+	position: relative;
+}
+
+div.open-control {
+	position: absolute;
+	top: 0;
+	left: 80px;
+	z-index: 10;
+}
+
+div.open-control button {
+    cursor: pointer;
+}
+
 
 
